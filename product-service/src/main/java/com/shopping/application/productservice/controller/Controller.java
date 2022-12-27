@@ -7,10 +7,13 @@
 package com.shopping.application.productservice.controller;
 
 import com.shopping.application.productservice.dto.ProductRequest;
+import com.shopping.application.productservice.dto.ProductResponse;
 import com.shopping.application.productservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 // AS WE WILL BE EXPOSING THIS API SO WE WILL NEED TO ANNOTATE THIS WITH @RestController
 // WITH RequestMapping ANNOTATION WITH THE PATH
@@ -24,5 +27,11 @@ public class Controller {
     @ResponseStatus(HttpStatus.CREATED)
     public void createProduct(@RequestBody ProductRequest productRequest){
             productService.createProduct(productRequest);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductResponse> getAllProducts(){
+        return productService.getAllProducts();
     }
 }
